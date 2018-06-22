@@ -1,0 +1,6 @@
+Need to have a start page (if timer is not running) on page load
+Once start is clicked, timer counts down and need HTML (questions/radio buttons) to show up. 
+Need to define basic variables of correct answers/wrong answers/unanswered
+once user finishes answering, they need to hit done and timer ends and score is tallied and re-writted in HTML
+Need to set rule if time runs out, score is tallied and re-writted in HTML
+Need to set timer for 30 
