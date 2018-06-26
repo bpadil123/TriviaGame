@@ -4,3 +4,15 @@ Need to define basic variables of correct answers/wrong answers/unanswered
 once user finishes answering, they need to hit done and timer ends and score is tallied and re-writted in HTML
 Need to set rule if time runs out, score is tallied and re-writted in HTML
 Need to set timer for 30 
+
+
+2nd Round
+Utilize divs in HTML to carry out/writted our JavaCript consecutively
+Have a start page with a start button. Upon clicking, hide start div or overwrite the div w/ new JS (question)
+Start interval 
+Write question and answers to div, questions can be written as strings, answers will be kept in an array
+user can chose an answer within time frame, on click, andvance to the next question. If user does not click before time ends, then move to the next. 
+We will use if else to determine if user input matched what was right or wrong. 
+4 vars-- userGuess, correctAnswer, wrongAnswer, noAnswer
+if user choses the right answer, correctAnswer ++, GIF appears,
+else user choses wrong answer, prompted w/ wrong!, run the next function or overwrite div.
