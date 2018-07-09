@@ -33,33 +33,54 @@ var myQuestions = [{
     },
 ];
 
+// var gifArray = ['question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'question11', 'question12', 'question13','question14','question15'];
+
+var messages = {
+    correct: "Yes, that's right!",
+    incorrect: "No, that's not it.  --Once you've accepted your flaws, no one can use them against you",
+    endTime: "Out of time!",
+    finished: "Alright! Let's see how well you did."
+}
+// Call a new game once results are shown
+// function newGame(){
+// 	$('#').empty();
+// 	$('#').empty();
+// 	$('#').empty();
+// 	$('#unanswered').empty();
+// 	currentQuestion = 0;
+// 	correctAnswer = 0;
+// 	incorrectAnswer = 0;
+// 	unanswered = 0;
+// 	newQuestion();
+// }
 
 function displayQuestion() {
     $("#quest").empty();
-    $("#scoreboard").html("Correct Guesses: " + correctAnswer + "<br>"+  "Incorrect Gesses: " + inCorrectAnswer + "<br>"+  "No Answered: " + unAnswered);
+    $("#scoreboard").html("Correct Guesses: " + correctAnswer + "<br>" + "Incorrect Gesses: " + inCorrectAnswer + "<br>" + "No Answered: " + unAnswered);
 
     $("#quest").append("<h1>" + myQuestions[counter].question + "<h1>");
     $("#quest").append(`<div class="answ">${myQuestions[counter].answers.a}</div>`);
     $("#quest").append(`<div class="answ">${myQuestions[counter].answers.b}</div>`);
     $("#quest").append(`<div class="answ">${myQuestions[counter].answers.c}</div>`);
-    
+
     countdown();
     //clicking an answer will pause the time and setup answerPage
-    $('.thisChoice').on('click',function(){
+    $('.thisChoice').on('click', function () {
         userSelect = $(this).data('index');
         clearInterval(time);
         answerPage();
     });
 }
 
-function displayResults(){
+function displayResults() {
     $("#quest").empty();
-    $("#scoreboard").html("Correct Guesses: " + correctAnswer + "<br>"+  "Incorrect Gesses: " + inCorrectAnswer + "<br>"+  "No Answered: " + unAnswered);
+    $("#timer").empty();
+    $("#scoreboard").html("Correct Guesses: " + correctAnswer + "<br>" + "Incorrect Gesses: " + inCorrectAnswer + "<br>" + "No Answered: " + unAnswered);
 
 
 }
 
-function countdown(){
+function countdown() {
     seconds = 15;
     $('#timer').html('<h3>Time Remaining: ' + seconds + '</h3>');
     answered = true;
@@ -67,10 +88,10 @@ function countdown(){
     time = setInterval(showCountdown, 1000);
 }
 
-function showCountdown(){
+function showCountdown() {
     seconds--;
     $('#timer').html('<h3>Time Remaining: ' + seconds + '</h3>');
-    if(seconds < 1){
+    if (seconds < 1) {
         clearInterval(time);
         answered = false;
         answerPage();
@@ -90,7 +111,7 @@ $(document).ready(function () {
 
 
     });
-  
+
 
     $(document).on("click", ".answ", function (event) {
         // console.log($(this).text());
@@ -100,7 +121,8 @@ $(document).ready(function () {
             if (counter < myQuestions.length) {
                 displayQuestion();
             } else {
-                displayResults()            }
+                displayResults()
+            }
         }
         //throw in GIF
         else {
@@ -113,12 +135,13 @@ $(document).ready(function () {
             }
         }
     });
-     if (time<=0)
-    {unAnswered++;
+    if (time <= 0) {
+        unAnswered++;
 
         clearInterval(time);
 
-        displayQuestion()}
+        displayQuestion()
+    }
 
     // displayQuestion();
     // });
