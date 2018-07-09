@@ -8,7 +8,7 @@ var answered;
 var userSelect;
 
 
-var triviaQuestions = [{
+var QuestionsList = [{
 		question: "How many kindoms are in Westeros?",
 		answerList: ["3", "7", "10"],
 		answer: 1
@@ -51,11 +51,10 @@ var triviaQuestions = [{
 	},
 ];
 
-var gifArray = ['question1', 'question2', 'question3'];
-var messages = {
+var answerMessage = {
 	correct: "You are correct, one step closer to the throne you are!",
 	incorrect: "Woops, lets hope you win the next battle!",
-	endTime: "Time has passed....",
+	timesUp: "Time has passed....",
 	finished: "Do you deserve to sit on the throne?"
 }
 
@@ -91,11 +90,11 @@ function newQuestion() {
 	answered = true;
 
 	//sets up new questions & answerList
-	$('#currentQuestion').html('Question #' + (currentQuestion + 1) + '/' + triviaQuestions.length);
-	$('.question').html('<h2>' + triviaQuestions[currentQuestion].question + '</h2>');
+	$('#currentQuestion').html('Question #' + (currentQuestion + 1) + '/' + QuestionsList.length);
+	$('.question').html('<h2>' + QuestionsList[currentQuestion].question + '</h2>');
 	for (var i = 0; i < 4; i++) {
 		var choices = $('<div>');
-		choices.text(triviaQuestions[currentQuestion].answerList[i]);
+		choices.text(QuestionsList[currentQuestion].answerList[i]);
 		choices.attr({
 			'data-index': i
 		});
@@ -134,25 +133,25 @@ function answerPage() {
 	$('.thisChoice').empty(); //Clears question page
 	$('.question').empty();
 
-	var rightAnswerText = triviaQuestions[currentQuestion].answerList[triviaQuestions[currentQuestion].answer];
-	var rightAnswerIndex = triviaQuestions[currentQuestion].answer;
+	var rightAnswerText = QuestionsList[currentQuestion].answerList[QuestionsList[currentQuestion].answer];
+	var rightAnswerIndex = QuestionsList[currentQuestion].answer;
 	$('#gif').html('<img src = "assets/images/gifs/' + gifArray[currentQuestion] + '.gif" width = "400px">');
 	//checks to see correct, incorrect, or unanswered
 	if ((userSelect == rightAnswerIndex) && (answered == true)) {
 		correctAnswer++;
-		$('#message').html(messages.correct);
+		$('#message').html(answerMessage.correct);
 	} else if ((userSelect != rightAnswerIndex) && (answered == true)) {
 		incorrectAnswer++;
-		$('#message').html(messages.incorrect);
+		$('#message').html(answerMessage.incorrect);
 		$('#correctedAnswer').html('The correct answer was: ' + rightAnswerText);
 	} else {
 		unanswered++;
-		$('#message').html(messages.endTime);
+		$('#message').html(answerMessage.timesUp);
 		$('#correctedAnswer').html('The correct answer was: ' + rightAnswerText);
 		answered = true;
 	}
 
-	if (currentQuestion == (triviaQuestions.length - 1)) {
+	if (currentQuestion == (QuestionsList.length - 1)) {
 		setTimeout(scoreboard, 5000)
 	} else {
 		currentQuestion++;
@@ -166,7 +165,7 @@ function scoreboard() {
 	$('#correctedAnswer').empty();
 	$('#gif').empty();
 
-	$('#finalMessage').html(messages.finished);
+	$('#finalMessage').html(answerMessage.finished);
 	$('#correctAnswers').html("Correct Answers: " + correctAnswer);
 	$('#incorrectAnswers').html("Incorrect Answers: " + incorrectAnswer);
 	$('#unanswered').html("Unanswered: " + unanswered);
